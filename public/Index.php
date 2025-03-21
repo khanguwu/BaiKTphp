@@ -14,7 +14,7 @@ $sinhViens = $sinhVienModel->getAll();
 
 <div class="container mx-auto mt-8 px-6">
     <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">📋 Danh Sách Sinh Viên</h1>
-    
+
     <div class="flex justify-between items-center mb-6">
         <a href="../app/views/SinhVien/Create.php" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition flex items-center gap-2">
             ➕ <span>Thêm Sinh Viên</span>
@@ -40,14 +40,14 @@ $sinhViens = $sinhVienModel->getAll();
                         <td class="py-4 px-6 font-medium text-gray-900"><?= htmlspecialchars($sv->MaSV) ?></td>
                         <td class="py-4 px-6"><?= htmlspecialchars($sv->HoTen) ?></td>
                         <td class="py-4 px-6 text-center"><span class="px-3 py-1 rounded-full <?= $sv->GioiTinh ? 'bg-blue-200 text-blue-800' : 'bg-pink-200 text-pink-800' ?>">
-                            <?= $sv->GioiTinh ? 'Nam' : 'Nữ' ?></span>
+                                <?= $sv->GioiTinh ? 'Nam' : 'Nữ' ?></span>
                         </td>
                         <td class="py-4 px-6 text-center"><?= date("d-m-Y", strtotime($sv->NgaySinh)) ?></td>
                         <td class="py-4 px-6 text-center">
                             <?php if (!empty($sv->Hinh)) : ?>
-                                <img src="../uploads/<?= htmlspecialchars($sv->Hinh) ?>" 
-                                     alt="Avatar" 
-                                     class="h-14 w-14 rounded-full object-cover border border-gray-300 shadow-md">
+                                <img src="../uploads/<?= htmlspecialchars($sv->Hinh) ?>"
+                                    alt="Avatar"
+                                    class="h-14 w-14 rounded-full object-cover border border-gray-300 shadow-md">
                             <?php else : ?>
                                 <span class="text-gray-500 italic">Không có ảnh</span>
                             <?php endif; ?>
@@ -57,7 +57,9 @@ $sinhViens = $sinhVienModel->getAll();
                             <a href="../app/views/SinhVien/Edit.php?MaSV=<?= $sv->MaSV ?>" class="text-blue-500 font-semibold hover:text-blue-700 flex items-center gap-1">
                                 ✏️ <span>Sửa</span>
                             </a>
-                            <a href="index.php?delete=<?= $sv->MaSV ?>" class="text-red-500 font-semibold hover:text-red-700 flex items-center gap-1" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                            <a href="index.php?MaSV=<?= $sv->MaSV ?>"
+                                class="text-red-500 font-semibold hover:text-red-700 flex items-center gap-1"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
                                 🗑️ <span>Xóa</span>
                             </a>
                         </td>

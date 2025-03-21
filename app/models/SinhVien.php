@@ -52,14 +52,22 @@ class SinhVien
         $query = "DELETE FROM " . $this->table_name . " WHERE MaSV = :MaSV";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':MaSV', $MaSV, PDO::PARAM_STR);
-
+    
         try {
-            return $stmt->execute();
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                $errorInfo = $stmt->errorInfo();
+                error_log("Delete Error: " . $errorInfo[2]);
+                return false;
+            }
         } catch (PDOException $e) {
-            error_log("Delete Error: " . $e->getMessage());
+            error_log("Delete Exception: " . $e->getMessage());
             return false;
         }
     }
+    
+
 
     public function update($MaSV, $HoTen, $GioiTinh, $NgaySinh, $Hinh, $MaNganh)
     {

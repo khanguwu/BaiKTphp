@@ -51,18 +51,29 @@ class SinhVienController
     }
 
     public function deleteStudent()
-    {
-        if (isset($_GET['MaSV'])) {
-            $MaSV = $_GET['MaSV'];
-            if ($this->sinhVienModel->delete($MaSV)) {
-                header("Location: index.php?deleted=1");
-                exit();
-            } else {
-                header("Location: index.php?delete_error=1");
-                exit();
-            }
-        }
+{
+    if (!isset($_GET['MaSV']) || empty($_GET['MaSV'])) {
+        die("Lỗi: Mã sinh viên không hợp lệ!");
     }
+
+    $MaSV = $_GET['MaSV'];
+
+    // Kiểm tra sinh viên có tồn tại không trước khi xóa
+    $sinhVien = $this->sinhVienModel->getById($MaSV);
+    if (!$sinhVien) {
+        die("Lỗi: Sinh viên không tồn tại!");
+    }
+
+    // Xóa sinh viên và kiểm tra kết quả
+    if ($this->sinhVienModel->delete($MaSV)) {
+        header("Location: index.php?deleted=1");
+        exit();
+    } else {
+        die("Lỗi: Không thể xóa sinh viên. Kiểm tra error_log!");
+    }
+}
+
+
 
     public function updateStudent()
     {

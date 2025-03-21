@@ -17,7 +17,7 @@
         <div class="text-lg font-bold">Test1</div>
         <div class="space-x-4">
             <a href="#" class="hover:text-gray-400">Sinh Viên</a>
-            <a href="#" class="hover:text-gray-400">Học Phần</a>
+            <a href="../app/views/HocPhan/index.php" class="hover:text-gray-400">Học Phần</a>
             <a href="#" class="hover:text-gray-400">Đăng Kí</a>
             <a href="#" class="hover:text-gray-400">Đăng Nhập</a>
         </div>
